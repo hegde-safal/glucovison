@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="description" content="Daily Nutrition Analyzer - Track your daily macronutrient intake instantly. Analyze breakfast, lunch, snacks, and dinner to get detailed nutritional breakdown with calories, carbs, protein, fat, and fiber content." />
+    <meta name="keywords" content="nutrition analyzer, daily nutrition tracker, macro calculator, food nutrition, diet tracker, calorie counter, nutritional analysis" />
+    <meta name="author" content="Daily Nutrition Analyzer" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.yourwebsite.com/" />
+    <meta property="og:title" content="Daily Nutrition Analyzer - Track Your Macros" />
+    <meta property="og:description" content="Instantly analyze your daily nutrition intake with our professional nutrition analyzer. Get detailed breakdown of calories, carbs, protein, fat, and fiber." />
+    <meta property="og:image" content="https://www.yourwebsite.com/og-image.jpg" />
+    <meta property="og:site_name" content="Daily Nutrition Analyzer" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.yourwebsite.com/" />
+    <meta name="twitter:title" content="Daily Nutrition Analyzer - Track Your Macros" />
+    <meta name="twitter:description" content="Instantly analyze your daily nutrition intake with our professional nutrition analyzer." />
+    <meta name="twitter:image" content="https://www.yourwebsite.com/twitter-image.jpg" />
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#10b981" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Nutrition Analyzer" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.yourwebsite.com/" />
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    
+    <title>Daily Nutrition Analyzer | Track Your Daily Macros & Nutrition</title>
+</head>
+<body>
+    <div class="app-shell">
+        <!-- Header Section -->
+        <header class="app-header" role="banner">
+            <h1>Daily Nutrition Analyzer</h1>
+            <p>Enter what you ate today and see your daily macro breakdown instantly.</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main" role="main">
+            <!-- Input Section -->
+            <section class="input-grid" aria-label="Meal Input Section">
+                <article class="meal-card">
+                    <h2>🌅 Breakfast</h2>
+                    <textarea 
+                        id="breakfast" 
+                        placeholder="e.g. 2 chapati with dal, 1 cup tea"
+                        aria-label="Breakfast meals input"
+                    ></textarea>
+                </article>
+
+                <article class="meal-card">
+                    <h2>🍽️ Lunch</h2>
+                    <textarea 
+                        id="lunch" 
+                        placeholder="e.g. rice with sambar, curd, salad"
+                        aria-label="Lunch meals input"
+                    ></textarea>
+                </article>
+
+                <article class="meal-card">
+                    <h2>🥤 Snacks</h2>
+                    <textarea 
+                        id="snacks" 
+                        placeholder="e.g. 1 banana, handful of nuts"
+                        aria-label="Snacks input"
+                    ></textarea>
+                </article>
+
+                <article class="meal-card">
+                    <h2>🌙 Dinner</h2>
+                    <textarea 
+                        id="dinner" 
+                        placeholder="e.g. 2 chappathi, paneer curry, salad"
+                        aria-label="Dinner meals input"
+                    ></textarea>
+                </article>
+            </section>
+
+            <!-- Action Buttons -->
+            <section class="actions" aria-label="Action Controls">
+                <button 
+                    id="analyze-btn" 
+                    aria-label="Analyze meals"
+                    type="button"
+                >
+                    Analyze Meals
+                </button>
+                <span id="status" class="status" role="status" aria-live="polite"></span>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results" class="results hidden" aria-label="Nutrition Results" role="region" aria-live="polite">
+                <h2>📊 Daily Totals</h2>
+                <div class="results-grid">
+                    <article class="result-card">
+                        <span class="label">Calories</span>
+                        <span id="total_calories" class="value">-</span>
+                        <span class="unit">kcal</span>
+                    </article>
+                    <article class="result-card">
+                        <span class="label">Carbohydrates</span>
+                        <span id="total_carbs" class="value">-</span>
+                        <span class="unit">g</span>
+                    </article>
+                    <article class="result-card">
+                        <span class="label">Sugar</span>
+                        <span id="total_sugar" class="value">-</span>
+                        <span class="unit">g</span>
+                    </article>
+                    <article class="result-card">
+                        <span class="label">Protein</span>
+                        <span id="total_protein" class="value">-</span>
+                        <span class="unit">g</span>
+                    </article>
+                    <article class="result-card">
+                        <span class="label">Fat</span>
+                        <span id="total_fat" class="value">-</span>
+                        <span class="unit">g</span>
+                    </article>
+                    <article class="result-card">
+                        <span class="label">Fiber</span>
+                        <span id="total_fiber" class="value">-</span>
+                        <span class="unit">g</span>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Unmatched Items Section -->
+            <section id="unmatched-section" class="unmatched hidden" aria-label="Unmatched Items" role="region">
+                <h2>⚠️ Items Not Found</h2>
+                <p class="unmatched-help">
+                    These entries could not be matched confidently in the database and were skipped:
+                </p>
+                <ul id="unmatched-list" role="list"></ul>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer" role="contentinfo">
+            <span>Phase 1: Text → Fuzzy Match → Nutrient Lookup → Daily Totals</span>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+</html>

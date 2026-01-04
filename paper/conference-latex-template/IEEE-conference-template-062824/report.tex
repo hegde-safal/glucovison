@@ -1,0 +1,108 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+% \usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+% \usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+% \usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{GlucoVision: AI Driven Platform for Personalized Analysis and Diabetes Risk Prediction}
+
+\author{\IEEEauthorblockN{Rohith S Panchamukhi}
+\IEEEauthorblockA{\textit{Dept. of CS \& Engineering} \\
+\textit{RV College of Engineering}\\
+Bengaluru-560 059}
+\and
+\IEEEauthorblockN{Rahul A S}
+\IEEEauthorblockA{\textit{Dept. of CS \& Engineering} \\
+\textit{RV College of Engineering}\\
+Bengaluru-560 059}
+\and
+\IEEEauthorblockN{Safal Hegde}
+\IEEEauthorblockA{\textit{Dept. of CS \& Engineering} \\
+\textit{RV College of Engineering}\\
+Bengaluru-560 059}
+\and
+\IEEEauthorblockN{N Pavan}
+\IEEEauthorblockA{\textit{Dept. of CS \& Engineering} \\
+\textit{RV College of Engineering}\\
+Bengaluru-560 059}
+\and
+\IEEEauthorblockN{Name Placeholder}
+\IEEEauthorblockA{\textit{Dept. of CS \& Engineering} \\
+\textit{RV College of Engineering}\\
+Bengaluru-560 059}
+}
+
+\maketitle
+
+\begin{abstract}
+This report details the design and implementation of ``GlucoVision'', an AI-driven platform developed as part of the Experiential Learning curriculum. The project aims to assist individuals with pre-diabetes and diabetes in managing their glycaemic health through personalized nutritional analysis. By integrating Natural Language Processing (NLP) with the Edamam Nutrition Analysis API, the system converts unstructured meal descriptions into precise nutritional data. A hybrid processing engine evaluates sugar, carbohydrate, and fiber content against clinical guidelines to predict glycaemic risk in real-time. The platform addresses the critical need for accessible, context-aware dietary intelligence, empowering users to make informed decisions and mitigate health risks associated with dysglycaemia.
+\end{abstract}
+
+\begin{IEEEkeywords}
+AI in Healthcare, Experiential Learning, Nutritional Analysis, Glycaemic Control, NLP, Flask.
+\end{IEEEkeywords}
+
+\section{Introduction}
+The rapid rise of metabolic disorders, particularly diabetes mellitus, poses a significant global health challenge. Effective management requires continuous monitoring of dietary intake, yet traditional tools often lack usability and context. This project, executed under the Computer Science cluster for the Academic Year 2025-26, explores the application of Artificial Intelligence (AI) to solve this real-world problem.
+
+GlucoVision leverage modern web technologies and AI to provide a seamless user experience. Unlike standard calorie counters, it focuses on \textit{glycaemic risk}, interpreting meal composition (e.g., sugar vs. fiber ratios) to predict blood sugar spikes. The primary objective is to demonstrate how theoretical computer science concepts---such as API integration, NLP, and algorithm design---can be applied to create a socially relevant healthcare solution.
+
+\section{Methodology}
+
+\subsection{System Architecture}
+The system follows a modular 3-tier architecture:
+\begin{itemize}
+    \item \textbf{Presentation Layer}: An interactive web interface (Fig. 1) built with HTML5/CSS3 that accepts natural language inputs (e.g., ``2 slices of blueberry cheesecake'').
+    \item \textbf{Logic Layer}: A Python Flask backend that orchestrates data flow. It houses the `NutritionEngine` class, which implements the core business logic for risk assessment.
+    \item \textbf{Data Layer}: A hybrid storage model combining a local SQLite database for user profiles and history, and a cloud-based external API for comprehensive food data.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.45\textwidth]{fig1.png}}
+\caption{GlucoVision User Interface allowing natural language meal entry.}
+\label{fig1}
+\end{figure}
+
+\subsection{Data Processing Pipeline}
+1.  **NLP Parsing**: The user's input string is processed using the Spacy NLP library to perform Named Entity Recognition (NER). A custom parser extracts food entities along with their quantities and units (e.g., ``slice'', ``cup''). This ensures that ``2 slices'' is treated as a specific measure, not an abstract number.
+2.  **API Integration with Smart Fallback**: The system first queries a local master dataset. If data is missing or potentially erroneous (e.g., a sweet item showing 0g sugar), the system triggers a ``Smart Fallback'' routine. It constructs a normalized query for the Edamam Nutrition Analysis API, prepending default quantities if necessary (e.g., converting ``cheesecake'' to ``1 cheesecake'') to ensure valid data retrieval.
+3.  **Risk Calculation**: The engine aggregates macronutrients (Sugar, Carbs, Protein, Fat, Fiber). It applies a rule-based algorithm derived from medical guidelines to classify meals as `Safe`, `Moderate`, or `High` risk.
+
+\section{Implementation Details}
+
+\subsection{Technology Stack}
+The project utilizes the following technologies:
+\begin{itemize}
+    \item \textbf{Language}: Python 3.12 (Backend Logic)
+    \item \textbf{Framework}: Flask (Web Server)
+    \item \textbf{APIs}: Edamam Nutrition Analysis API v2
+    \item \textbf{Libraries}: `requests`, `spacy`, `rapidfuzz`
+    \item \textbf{Database}: SQLite
+\end{itemize}
+
+\subsection{Key Algorithms}
+The core innovation is the `analyze\_meals` function in `nutrition.py`. It handles the complexity of merging local and remote data. The algorithm specifically addresses data quality issues by validating local sugar values against food names (e.g., if "cheesecake" has 0g sugar locally, it forces an API lookup). This ensures high accuracy even with imperfect local datasets.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.45\textwidth]{fig2.png}}
+\caption{Risk Analysis Dashboard showing detailed nutritional breakdown and AI suggestions.}
+\label{fig2}
+\end{figure}
+
+\section{Results}
+The platform was tested with diverse dietary inputs. The integration of the Edamam API proved critical for accuracy. For example, the query ``blueberry cheesecake'' initially returned 0g sugar from the local database. After implementing the Smart Fallback mechanism, the system correctly identified specific sugar content (approx. 17-27g per slice depending on size) and flagged detailed GL risk.
+
+Figure 2 demonstrates the final output, providing users with macronutrient breakdowns and actionable suggestions (e.g., "Add fiber to lower glycemic load").
+
+\section{Conclusion and Future Scope}
+GlucoVision successfully demonstrates the potential of AI in personalized healthcare. By automating the complex task of nutritional analysis, it makes glycaemic control accessible to non-experts. Future work includes developing a mobile application, integrating Computer Vision for food image recognition, and utilizing Wearable IoT devices for continuous glucose monitoring integration. This project fulfills the experiential learning outcomes by bridging the gap between academic theory and practical application.
+
+\end{document}

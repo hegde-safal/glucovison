@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="page-header">
+    <h1 class="page-title">Weekly Trends & Analysis</h1>
+    <p class="page-subtitle">Monitor your 7-day glycaemic patterns in real-time.</p>
+</header>
+
+<section id="dashboard-graphs">
+    <div class="card" style="border-left: 4px solid var(--primary);">
+        <p id="weekly-context" style="font-size: 1.1rem; color: var(--text-main);">
+            Loading insight...
+        </p>
+    </div>
+
+    <div class="results-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); margin-top: 2rem;">
+        <!-- Graph 1: Sugar -->
+        <div class="card">
+            <h3>Rolling Weekly Sugar (g)</h3>
+            <canvas id="chart-sugar"></canvas>
+        </div>
+
+        <!-- Graph 2: Carbs -->
+        <div class="card">
+            <h3>Rolling Weekly Carbs (g)</h3>
+            <canvas id="chart-carbs"></canvas>
+        </div>
+
+        <!-- Graph 3: Fiber vs Carb -->
+        <div class="card">
+            <h3>Fiber vs Carb Balance</h3>
+            <canvas id="chart-fiber-carb"></canvas>
+        </div>
+
+        <!-- Graph 4: Risk Summary -->
+        <div class="card">
+            <h3>Weekly Risk Profile</h3>
+            <div style="max-height: 300px; display: flex; justify-content: center;">
+                <canvas id="chart-risk"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Trigger dashboard update immediately on load
+        if (typeof updateDashboard === 'function') {
+            updateDashboard();
+        }
+    });
+</script>
+{% endblock %}

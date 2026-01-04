@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="page-header">
+    <h1 class="page-title">About GlucoVision</h1>
+    <p style="color: var(--text-muted); max-width: 600px;">
+        Empowering you with precision nutrition intelligence for better metabolic health.
+    </p>
+</header>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+    <!-- Mission Card -->
+    <div class="card">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div
+                style="width: 40px; height: 40px; background: var(--surface); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                <i class="ri-focus-3-line" style="font-size: 1.5rem;"></i>
+            </div>
+            <h3 style="margin: 0;">Our Mission</h3>
+        </div>
+        <p style="color: var(--text-muted); line-height: 1.6;">
+            GlucoVision transforms complex nutritional data into clear, actionable insights. We bridge the gap between
+            simple calorie counting and clinical-grade metabolic analysis, helping you make informed decisions for
+            long-term health.
+        </p>
+    </div>
+
+    <!-- Technology Card -->
+    <div class="card">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div
+                style="width: 40px; height: 40px; background: var(--surface); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent);">
+                <i class="ri-cpu-line" style="font-size: 1.5rem;"></i>
+            </div>
+            <h3 style="margin: 0;">Advanced AI</h3>
+        </div>
+        <p style="color: var(--text-muted); line-height: 1.6;">
+            Powered by state-of-the-art NLP and Retrieval-Augmented Generation (RAG), our engine understands your
+            natural language logs ("oatmeal with berries") and matches them against a validated database of 6,000+ foods
+            to calculate precise glycaemic loads.
+        </p>
+    </div>
+
+    <!-- Privacy Card -->
+    <div class="card">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div
+                style="width: 40px; height: 40px; background: var(--surface); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #10b981;">
+                <i class="ri-shield-keyh-line" style="font-size: 1.5rem;"></i>
+            </div>
+            <h3 style="margin: 0;">Privacy First</h3>
+        </div>
+        <p style="color: var(--text-muted); line-height: 1.6;">
+            Your health data is personal. GlucoVision stores your logs and settings locally on your device or secure
+            local database. We believe in providing powerful insights without compromising your digital privacy.
+        </p>
+    </div>
+</div>
+
+<div class="card" style="margin-top: 2rem;">
+    <h3 style="margin-bottom: 1rem;">How It Works</h3>
+    <div style="display: grid; gap: 1rem;">
+        <div style="display: flex; gap: 1rem; align-items: start;">
+            <span
+                style="background: var(--surface); color: var(--primary); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">1</span>
+            <p style="margin: 0; color: var(--text-muted);"><strong>Log Your Meals:</strong> Simply type what you ate in
+                plain English.</p>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: start;">
+            <span
+                style="background: var(--surface); color: var(--primary); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">2</span>
+            <p style="margin: 0; color: var(--text-muted);"><strong>Instant Analysis:</strong> Our engine parses
+                nutrients and calculates sugar, fiber, and protein content.</p>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: start;">
+            <span
+                style="background: var(--surface); color: var(--primary); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">3</span>
+            <p style="margin: 0; color: var(--text-muted);"><strong>Get Suggestions:</strong> Specialized AI models
+                analyze your daily totals to suggest specific food swaps for tomorrow.</p>
+        </div>
+    </div>
+</div>
+
+<div class="risk-banner risk-moderate mt-4">
+    <i class="ri-alert-line" style="font-size: 1.5rem;"></i>
+    <div>
+        <span class="risk-title">Medical Disclaimer</span>
+        <p>
+            GlucoVision provides dietary analysis based on standard food databases. It is not a diagnostic tool and does
+            not replace professional medical advice. Always consult with a healthcare provider for managing specific
+            conditions.
+        </p>
+    </div>
+</div>
+{% endblock %}

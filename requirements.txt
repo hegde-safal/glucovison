@@ -1,0 +1,6 @@
+flask
+rapidfuzz
+pandas
+spacy
+groq
+requests

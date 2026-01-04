@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="page-header">
+    <h1 class="page-title">Welcome back, {{ name }}</h1>
+    <p class="page-subtitle">Track your meals to monitor your glycaemic risk.</p>
+</header>
+
+<!-- Meal Input Section -->
+<section class="input-grid">
+    <div class="card meal-input-group">
+        <h3><i class="ri-sun-line"></i> Breakfast</h3>
+        <textarea id="breakfast" placeholder="e.g. 2 idli with sambar..."></textarea>
+    </div>
+    <div class="card meal-input-group">
+        <h3><i class="ri-sun-cloudy-line"></i> Lunch</h3>
+        <textarea id="lunch" placeholder="e.g. rice, dal, curd..."></textarea>
+    </div>
+    <div class="card meal-input-group">
+        <h3><i class="ri-cup-line"></i> Snacks</h3>
+        <textarea id="snacks" placeholder="e.g. apple, Green tea..."></textarea>
+    </div>
+    <div class="card meal-input-group">
+        <h3><i class="ri-moon-line"></i> Dinner</h3>
+        <textarea id="dinner" placeholder="e.g. 2 chapatis..."></textarea>
+    </div>
+</section>
+
+<div style="text-align: right; margin-bottom: 2rem;">
+    <button id="analyze-btn" class="btn-primary">
+        <i class="ri-search-line"></i> Analyze Meals
+    </button>
+</div>
+
+<!-- Results Section (Hidden by default) -->
+<div id="results-section" class="hidden">
+    <!-- Risk Banner -->
+    <div id="risk-card" class="risk-banner">
+        <div class="risk-icon">
+            <i class="ri-alert-fill" style="font-size: 2rem;"></i>
+        </div>
+        <div>
+            <span id="risk-title" class="risk-title">Calculating...</span>
+            <p id="risk-desc">Please wait while we determine your risk level.</p>
+        </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <h2 style="margin-bottom: 1rem; font-size: 1.25rem;">Daily Nutrition Totals</h2>
+    <div class="results-grid">
+        <div class="stat-card">
+            <span class="stat-label">Calories</span>
+            <span id="cal-val" class="stat-value">-</span>
+            <span class="stat-unit">kcal</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Carbs</span>
+            <span id="carb-val" class="stat-value">-</span>
+            <span class="stat-unit">g</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Sugar</span>
+            <span id="sugar-val" class="stat-value">-</span>
+            <span class="stat-unit">g</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Protein</span>
+            <span id="prot-val" class="stat-value">-</span>
+            <span class="stat-unit">g</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Fat</span>
+            <span id="fat-val" class="stat-value">-</span>
+            <span class="stat-unit">g</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Fiber</span>
+            <span id="fib-val" class="stat-value">-</span>
+            <span class="stat-unit">g</span>
+        </div>
+    </div>
+
+    <!-- AI Suggestions -->
+    <div class="card suggestion-card">
+        <h3><i class="ri-magic-line"></i> Suggested Adjustments for Tomorrow</h3>
+        <ul id="sug-list" class="suggestion-list">
+            <!-- Populated by JS -->
+        </ul>
+    </div>
+</div>
+
+
+{% endblock %}

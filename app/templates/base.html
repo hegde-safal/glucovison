@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlucoVision | Glycaemic Risk Assessment</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="ri-heart-pulse-fill"></i>
+                <span>GlucoVision</span>
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li>
+                        <a href="{{ url_for('main.index') }}"
+                            class="nav-link {{ 'active' if request.endpoint == 'main.index' else '' }}">
+                            <i class="ri-dashboard-line nav-icon"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('main.weekly_analysis') }}"
+                            class="nav-link {{ 'active' if request.endpoint == 'main.weekly_analysis' else '' }}">
+                            <i class="ri-bar-chart-grouped-line nav-icon"></i>
+                            <span>Weekly Analysis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('main.history') }}"
+                            class="nav-link {{ 'active' if request.endpoint == 'main.history' else '' }}">
+                            <i class="ri-calendar-check-line nav-icon"></i>
+                            <span>History</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('main.settings') }}"
+                            class="nav-link {{ 'active' if request.endpoint == 'main.settings' else '' }}">
+                            <i class="ri-settings-4-line nav-icon"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('main.about') }}"
+                            class="nav-link {{ 'active' if request.endpoint == 'main.about' else '' }}">
+                            <i class="ri-information-line nav-icon"></i>
+                            <span>About</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <!-- Onboarding Modal -->
+    <div id="onboarding-modal" class="modal hidden"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000;">
+        <div class="card" style="width: 100%; max-width: 500px; padding: 2rem;">
+            <h2 style="margin-bottom: 1rem; color: var(--primary);">Welcome to GlucoVision</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Please set up your profile to continue.</p>
+
+            <form id="onboarding-form">
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Your Name</label>
+                    <input type="text" name="name" id="setup-name" required placeholder="e.g. John Doe"
+                        style="width: 100%; padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: var(--radius);">
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                    Get Started <i class="ri-arrow-right-line"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

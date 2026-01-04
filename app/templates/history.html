@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="page-header">
+    <h1 class="page-title">Analysis History</h1>
+    <p class="page-subtitle">Review your past risk assessments.</p>
+</header>
+
+<div class="card">
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="text-align: left; border-bottom: 2px solid #f1f5f9;">
+                <th style="padding: 1rem;">Date</th>
+                <th style="padding: 1rem;">Risk Level</th>
+                <th style="padding: 1rem;">Reason</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+            <tr style="border-bottom: 1px solid #f1f5f9;">
+                <td style="padding: 1rem;">{{ entry.date }}</td>
+                <td style="padding: 1rem;">
+                    <span class="
+                        {% if entry.risk_level == 'Safe' %}risk-safe
+                        {% elif entry.risk_level == 'Moderate' %}risk-moderate
+                        {% else %}risk-high{% endif %}
+                    " style="padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">
+                        {{ entry.risk_level }}
+                    </span>
+                </td>
+                <td style="padding: 1rem; color: var(--text-muted);">{{ entry.risk_reason }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3" style="padding: 2rem; text-align: center; color: var(--text-muted);">
+                    No history found. Start analyzing your meals!
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
