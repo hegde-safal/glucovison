@@ -4,43 +4,23 @@
 
 ## Key Features
 
--   **Medical-Grade Interface**: A clean, accessible, and responsive UI designed for clarity and ease of use.
--   **AI-Powered Food Analysis**:
-    -   **NLP Parsing**: Accurately extracts food items from natural language descriptions (e.g., "I had a bowl of oatmeal with blueberries").
-    -   **Fuzzy Matching**: Matches inputs against a master database of over 6,000 food items for precise nutritional data.
--   **Intelligent Risk Assessment**:
-    -   Calculates total sugar, carbs, fiber, protein, and fat.
-    -   Assigns a glycaemic risk level (Safe, Moderate, High) based on WHO-aligned thresholds.
--   **RAG-Enhanced Suggestions**:
-    -   Uses a localized RAG pipeline to generate science-backed, personalized dietary adjustments for the next day.
-    -   Suggestions are context-aware, correcting specific nutrient imbalances.
--   **Comprehensive History**:
-    -   **Daily Logging**: Automatically saves meal data and analysis results to a secure local database.
-    -   **Weekly Analytics**: Visualizes nutritional trends over time to identify patterns.
--   **Privacy-First Approach**: All personal data and history are stored locally on the user's machine.
-
-## Technology Stack
-
--   **Backend**: Python (Flask)
--   **Frontend**: HTML5, CSS3, JavaScript (Vanilla), Chart.js
--   **Database**: SQLite
--   **AI & NLP**:
-    -   `spacy` for natural language parsing
-    -   `rapidfuzz` for database matching
-    -   `groq` (Optional) for LLM-powered suggestions
+-   **AI-Powered Food Analysis**: Accurately extracts food items from natural language descriptions and matches them against a comprehensive database.
+-   **Intelligent Risk Assessment**: Calculates total sugar, carbs, fiber, protein, and fat to assign a glycaemic risk level (Safe, Moderate, High).
+-   **RAG-Enhanced Suggestions**: Generates science-backed, personalized dietary adjustments using LLMs (Groq).
+-   **Comprehensive History**: Logs daily entries and visualizes weekly trends.
 
 ## Setup Instructions
 
 ### Prerequisites
 -   Python 3.8+
--   `pip` (Python package manager)
+-   `pip`
 
 ### Installation
 
 1.  **Clone the Repository**
     ```bash
-    git clone <repository_url>
-    cd phase1_app
+    git clone https://github.com/hegde-safal/glucovison.git
+    cd glucovison
     ```
 
 2.  **Install Dependencies**
@@ -53,13 +33,12 @@
     python -m spacy download en_core_web_sm
     ```
 
-4.  **Configure Environment (Optional for AI)**
+4.  **Configure Environment**
     -   Create a `.env` file in the root directory.
-    -   Add your Groq API key:
+    -   Add your Groq API key (optional, for AI suggestions):
         ```env
         GROQ_API_KEY=your_api_key_here
         ```
-    -   *Note: The app runs without an API key using mock suggestions.*
 
 5.  **Run the Application**
     ```bash
@@ -67,25 +46,22 @@
     ```
 
 6.  **Access the Dashboard**
-    -   Open your browser and navigate to: `http://localhost:5000`
+    -   Open `http://localhost:5000` in your browser.
 
 ## Project Structure
 
 ```text
-phase1_app/
+glucovison/
 ├── app/
-│   ├── __init__.py      # App factory and configuration
-│   ├── routes.py        # Web routes and API endpoints
-│   ├── rag.py           # AI/RAG engine for suggestions
-│   ├── storage.py       # SQLite database manager
-│   ├── static/          # CSS, JS, and images
+│   ├── __init__.py      # App factory
+│   ├── routes.py        # API endpoints
+│   ├── rag.py           # RAG engine
+│   ├── nlp.py           # NLP engine
+│   ├── nutrition.py     # Nutrition logic
+│   ├── storage.py       # DB manager
+│   ├── static/          # Assets
 │   └── templates/       # HTML templates
-├── nutrition.db         # Local SQLite database (auto-generated)
 ├── nutrition_master.csv # Food database
-├── .env                 # Environment variables
-├── requirements.txt     # Python dependencies
-└── app.py               # Application entry point
+├── requirements.txt
+└── app.py               # Entry point
 ```
-
----
-*Disclaimer: GlucoVision is a wellness tool and is not intended to replace professional medical advice, diagnosis, or treatment.*

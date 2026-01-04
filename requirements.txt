@@ -1,6 +1,7 @@
 flask
-rapidfuzz
+python-dotenv
 pandas
+rapidfuzz
 spacy
 groq
 requests
